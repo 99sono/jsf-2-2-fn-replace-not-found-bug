@@ -29,3 +29,6 @@ This page does not work because have cut out the 	xmlns:fn="http://java.sun.com/
 NOTE:
 This issue bares resembaled to the reported bug, but it is not the same issue. 
 https://java.net/jira/browse/JAVASERVERFACES-3469
+
+This issue is now open on:
+https://java.net/jira/browse/JAVASERVERFACES-4222
