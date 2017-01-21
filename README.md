@@ -23,3 +23,9 @@ The one that works is the index.xhtml and it uses the fn:replace function of the
 The page works because it itself declares: xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
 The page offers a button to travel to a : index-fn-replace-not-found.xhtml that blows up with the above stack trace.
 This page does not work because have cut out the 	xmlns:fn="http://java.sun.com/jsp/jstl/functions" .
+
+
+
+NOTE:
+This issue bares resembaled to the reported bug, but it is not the same issue. 
+https://java.net/jira/browse/JAVASERVERFACES-3469
