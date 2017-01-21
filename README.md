@@ -1,4 +1,4 @@
-# Weblogic issue - JSF 2.2.12 - Application with webservice context will get - Multiple JSF Applications found on same ClassLoader.
+# JSF verified Weblogic 12.2.1.2 using JSF 2.2.12 - A page that uses composite components may go to error fn:replace not found if parent page does not itself declare the fn namespace
 
 JSF 2.2-12 returns:
 
