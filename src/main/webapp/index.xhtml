@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui"   
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+    xmlns:bugreportapp="http://java.sun.com/jsf/composite/bugreportapp/compositecomponents"
+    >
+    
+  <!--
+        COMMENTED OUT NAMESPACES:
+             xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+   -->  
+
+<!-- Refers to the application.properties file  -->
+<f:loadBundle basename="application" var="msg" />
+<f:view transient="true" />
+
+<!-- NOTE: h-head is needed for primefaces input text components. -->   
+<h:head>
+    <title><h:outputText value="#{msg.welcomeTitle}" /></title>
+</h:head>
+<body>
+    <h3>
+        <h:outputText value="#{msg.welcomeHeading}" />
+    </h3>
+    <p>
+        <h:outputText value="#{msg.welcomeMessage}" />
+    </p>
+
+    <p>
+        <h:outputText value="Start and stop timer " />
+    </p>
+
+    <h:outputText value="Form 1: no onKeypress prevent default" />
+    <script type='text/javascript'>
+        //<![CDATA[
+        function formKeyPressed(event){
+            console.log('formKeyPressed: ' + event);
+            return true;
+        }
+    
+
+        //]]>
+   </script>  
+    <h:form id="bugForm" onkeypress="formKeyPressed(event); ">
+        <h:outputText value="The purpose this page - as it is configured is to demonstrate a bug in JSF 2.2.12, namely" />
+        <h:outputText value="The fact that in composite components, in JSF 2.2.12 the JSTL functions namespace only seems to be imported and accessible" />
+        <h:outputText value="If the parent page imports the FN namespace. The fact that fn is declared in the composite component seems to be irrelenvant." />
+        <h:outputText value="When we take away the fn namespace from index.xhtml we will blow up in the composite component with error: fn:replace cannot be resolved. " />
+        <h:outputText value="On the other hand, when we put the fn:replace declaration also in the index.xhtml and JSF will EL will be able to resolve this funciton. " />
+        <h:outputText value="Therefore, the work-around is obviously to include the fn namepsace in the parent page until the bug is resolved. " />
+        <h:outputText value="&lt;br/&gt;" escape="false" />                
+        
+        
+        <!--  Initial validation: verify that fn works in a plain normal index.xhtml page. It does work, no problem. So we can ignore this check -->
+        <!-- h:outputText value="#{fn:replace(cc.clientId, ':','_')}_SomeSuffix" /-->
+        
+        
+        
+        <!-- This part here is a problem: -->
+        <bugreportapp:compositeSelectOneButton value="#{timerController.selectOneButtonValue}"/>    
+        
+        <h:commandButton action="index-fn-replace-not-found.xhtml?faces-redirect=true" value="Navigate To FN Replace Not found bug" />
+            
+    </h:form>
+    
+</body>
+</html>
